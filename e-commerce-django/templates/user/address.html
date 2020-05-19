@@ -1,0 +1,45 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block header %}
+    {{ block.super }}
+{% endblock %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/user/css/address.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/user/js/address.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <ol>
+        {% if address_list.exists %}
+
+            {% for address in address_list %}
+
+                <li>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ address.a_nickname }}:&nbsp;&nbsp;&nbsp;{{ address.a_phone }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ address.a_detail }}
+                        </div>
+                    </div>
+                    <button type="button" class="default_address" addressid="{{ address.id }}" >
+                        <span>设为默认地址</span></button>
+                    <button type="button" class="del_address" addressid="{{ address.id }}" >
+                        <span>删除地址</span> </button>
+                    <br>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ol>
+    <button type="button" class="btn btn-info" id="add_address">添加新地址</button>
+    <span>{{ help_message }}</span>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base_order.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/order/css/order_detail.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+        <script type="text/javascript" src="{% static 'axf/order/js/order_appraise.js' %}"></script>
+
+{% endblock %}d
