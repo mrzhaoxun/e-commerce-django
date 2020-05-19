@@ -1,0 +1,45 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/user/css/register.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/user/js/login.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <form method="post" action="{% url 'App:login' %}" onsubmit="return parse_data()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username_input">用户名</label>
+            <input type="text" class="form-control" name="username" id="username_input" placeholder="用户名/邮箱">
+        </div>
+
+        <div class="form-group">
+            <label for="password_input">密码</label>
+            <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">登陆</button>
+
+
+        <div class="more">
+            <p>
+                <span>
+                    <a href="{% url 'App:forget_password' %}"><u>忘记密码？</u></a>
+                </span>
+                <span class="right">
+                    <a href="{% url 'App:register' %}"><u>注册账号？</u></a>
+                </span>
+            </p>
+
+            <p class="error_message">{{ error_message }}</p>
+        </div>
+
+    </form>
+{% endblock %}

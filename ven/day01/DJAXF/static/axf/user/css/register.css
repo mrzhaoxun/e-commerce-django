@@ -1,0 +1,22 @@
+header{
+    height: 1.5rem;
+    background: darkorange;
+    margin-bottom: 0.3rem;
+}
+
+.right {
+    float: right;
+
+}
+
+.more {
+    padding: 0.2rem;
+    height: 1rem;
+    font-size: 0.4rem;
+    color: gray;
+
+}
+
+.more p.error_message{
+    color: red;
+}

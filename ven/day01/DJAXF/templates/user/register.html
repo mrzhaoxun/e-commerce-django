@@ -1,0 +1,63 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/user/css/register.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/user/js/register.js' %}"></script>
+    <script type="text/javascript" src="{% static 'axf/user/js/valid-img.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'App:register' %}" onsubmit="return check()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username_input">用户名</label>
+            <input type="text" class="form-control" name="username" id="username_input" placeholder="请输入用户名
+            （支持各种格式）">
+            <span id="username_info"></span>
+        </div>
+        <div class="form-group">
+            <label for="email_input">邮箱(接收激活邮件)</label>
+            <input type="email" class="form-control" name="email" id="email_input" placeholder="我们将发送一份邮件到邮箱，
+            用于账户激活">
+            <span id="email_info"></span>
+        </div>
+        <div class="form-group">
+            <label for="password_input">密码</label>
+            <input type="password" class="form-control" name="password" id="password_input" placeholder="请输入密码">
+        </div>
+        <div class="form-group">
+            <label for="password_confirm_input">确认密码</label>
+            <input type="password" class="form-control"  id="password_confirm_input" placeholder="请再次输入密码">
+        </div>
+        <div class="form-group">
+            <label for="icon_input">头像</label>
+            <input type="file" name="icon" id="icon_input">
+            <p class="help-block">选择图片文件</p>
+        </div>
+        <div>
+            <img id="valid-img" src="{% url 'App:get_code' %}" alt="刷新重试">
+            <input type="text" name="verify_code" placeholder="点击图片刷新验证码!">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">注册</button>
+
+        <div class="more">
+            <p>
+                <span>
+                    <a href="{% url 'App:forget_password' %}"><u>忘记密码？</u></a>
+                </span>
+                <span class="right">
+                    <a href="{% url 'App:login' %}"><u>已有账号？</u></a>
+                </span>
+            </p>
+
+            <p class="error_message">{{ error_message }}</p>
+        </div>
+    </form>
+{% endblock %}

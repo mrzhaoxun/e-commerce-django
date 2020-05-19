@@ -1,0 +1,11 @@
+.default_address{
+    background-color: #6adc6a;
+}
+
+.del_address{
+    background-color: #ff9536;
+}
+
+.default_address span, .del_address span{
+    color: white;
+}

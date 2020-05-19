@@ -1,0 +1,16 @@
+{% extends 'base_order.html' %}
+{% load static %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/order/js/alipay_model.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>模拟支付成功！ <small>正式支付上线需营业执照</small></h1>
+        <br>
+        <p>你也可以尝试点击此处去支付宝沙箱体验支付！！</p>
+        <button class="btn btn-success" id="alipay" orderid="{{ orderid }}">支付宝</button>
+    </div>
+{% endblock %}
