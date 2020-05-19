@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/order/css/order.css' %}">
+{% endblock %}
+
+{% block header %}
+    <header>
+    <span id="back">
+    <button id="back_button" class="btn btn-default"><p>返回</p></button>
+    </span>
+    </header>
+{% endblock %}

@@ -1,0 +1,20 @@
+header{
+    height: 1.5rem;
+    background: rgb(88, 227, 88);
+    margin-bottom: 0.3rem;
+}
+
+#back{
+    font-size: 0.86rem;
+    padding-left: 0.4rem;
+}
+
+#back_button{
+    font-size: 0.3rem;
+    background-color: #58e260;
+    border-color: white;
+}
+
+#back_button p{
+    color: white;
+}

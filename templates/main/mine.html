@@ -1,0 +1,178 @@
+{% extends 'base_main.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/css/mine.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/js/mine.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div id="mine">
+        <div class="fixed">
+            <span>
+                {% if is_login %}
+                    <img class="u_icon" src="{{ icon }}" alt="{{ username }}">
+                    {% else %}
+                    <span class="glyphicon glyphicon-user"></span>
+                {% endif %}
+            </span>
+
+            {% if is_login %}
+                <p>&nbsp;&nbsp;&nbsp;{{ username }}</p>
+                {% else %}
+                <p id="not_login">未登录</p>
+            {% endif %}
+
+            <p id="age">
+                <span class="glyphicon glyphicon-fire"></span>
+                <span>等级</span>
+            </p>
+
+            {% if not is_login %}
+                <div id="regis">注册</div>
+            {% endif %}
+
+            <p>
+                <span class="glyphicon glyphicon-heart"></span>
+                <span>商品收藏</span>
+            </p>
+        </div>
+
+        <div class="mine">
+            <p>
+                <span>全部订单</span>
+                <a href="{% url 'App:coupon' %}">全部订单</a>
+            </p>
+
+            <nav id="nav">
+                <ul>
+                    <li id="not_pay">
+                        {% if order_not_pay %}
+                            <span class="badge">{{ order_not_pay }}</span>
+                        {% endif %}
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-usd"></span>
+                            </dt>
+                            <dd>
+                                <span>待付款</span>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li id="not_receive">
+                        {% if order_not_receive %}
+                            <span class="badge">{{ order_not_receive }}</span>
+                        {% endif %}
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </dt>
+                            <dd>
+                                <span>待收货</span>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li id="not_appraise">
+                        {% if order_not_appraise %}
+                            <span class="badge">{{ order_not_appraise }}</span>
+                        {% endif %}
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </dt>
+                            <dd>
+                                <span>待评价</span>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-retweet"></span>
+                            </dt>
+                            <dd>
+                                <span>退款/售后</span>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </nav>
+            <menu>
+                <ul>
+                    <li>
+                        <a href="{% url 'App:coupon' %}">
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-bullhorn"></span>
+                            </dt>
+                            <dd>
+                                <span>积分商城</span>
+                            </dd>
+                        </dl>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'App:coupon' %}">
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-credit-card"></span>
+                            </dt>
+                            <dd>
+                                <span>优惠券</span>
+                            </dd>
+                        </dl>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'App:address' %}">
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-import"></span>
+                            </dt>
+                            <dd>
+                                <span>收货地址</span>
+                            </dd>
+                        </dl>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'App:coupon' %}">
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </dt>
+                            <dd>
+                                <span>客服反馈</span>
+                            </dd>
+                        </dl>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'App:coupon' %}">
+                        <dl>
+                            <dt>
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                            </dt>
+                            <dd>
+                                <span>关于我们</span>
+                            </dd>
+                        </dl>
+                        </a>
+                    </li>
+                </ul>
+            </menu>
+
+            {% if is_login %}
+                <p>
+                    <a href="{% url 'App:logout' %}">退出账户</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

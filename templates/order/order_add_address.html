@@ -1,0 +1,39 @@
+{% extends 'base_order.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/order/css/order_detail.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+        <script type="text/javascript" src="{% static 'axf/order/js/order_add_address.js' %}"></script>
+
+{% endblock %}
+
+
+{% block content %}
+    <form method="post"  action="{% url 'App:add_address' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username_input">收件人昵称</label>
+            <input type="text" class="form-control" name="nickname" id="username_input" placeholder="请输入昵称（支持各种格式）">
+            <span id="username_info"></span>
+        </div>
+        <div class="form-group">
+            <label for="email_input">手机号</label>
+            <input type="text" class="form-control" name="phone" id="email_input" placeholder="请输入联系电话">
+        </div>
+        <div class="form-group">
+            <label for="password_input">地址</label>
+            <input type="text" class="form-control" name="detail" id="password_input" placeholder="请输入详细地址">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success btn-block">保存</button>
+
+
+    </form>
+{% endblock %}
